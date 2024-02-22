@@ -1,5 +1,5 @@
 <?php 
-$page = 'Customer';
+$page = 'Billing';
 if(isset($_GET['message'])){
     $message = $_GET['message'];
     echo "<script type='text/javascript'>alert('$message');</script>";
@@ -13,27 +13,31 @@ include_once "../db_conn.php";
 </div>
 <div class="content">
 <div class="add">
-    <a href="add.php"><button type="button" class="btn btn-primary">Add Customer</button></a>
+    <a href="add.php"><button type="button" class="btn btn-primary">Add Billing</button></a>
 </div>
  <table id="table" class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Customer Name</th>
-                <th>Category</th>
+                <th>Customer ID</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Due Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
         <?php
-        $squery =  mysqli_query($conn, "SELECT * from customer where del_status != 'deleted'");
+        $squery =  mysqli_query($conn, "SELECT * from billing");
          while ($row = mysqli_fetch_array($squery)) {
         ?>
             <tr>
             <td><?php echo $row['id'] ?></td>
-            <td><?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name']." ".$row['suffix'] ?></td>
-            <td><?php echo $row['category'] ?></td>
-            <td><a href="edit.php?id=<?php echo $row['id'] ?>"  class="btn btn-outline-info">Edit</a></td>
+            <td><?php echo $row['customer_id'] ?></td>
+            <td><?php echo $row['total'] ?></td>
+            <td><?php echo $row['status'] ?></td>
+            <td><?php echo $row['due_date'] ?></td>
+            <td><a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-info">Edit</a></td>
             </tr> <?php }?>
             </tbody>
     </table>
