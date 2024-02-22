@@ -26,7 +26,7 @@ include_once "../db_conn.php";
     <input required type="text" class="form-control" name="rate" id="rate" placeholder="00.00">
   </div>
 
-  <div class="col-12">
+  <div class="col-12 buttons">
     <button type="submit" class="btn btn-primary">Save</button>
   </div>
 </form>

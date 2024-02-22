@@ -13,7 +13,7 @@ include_once "../db_conn.php";
 </div>
 <div class="content">
 <div class="add">
-    <a href="add.php"><button type="button" class="btn btn-primary">Add Billing</button></a>
+    <a href="select_customer.php"><button type="button" class="btn btn-primary">Add Billing</button></a>
 </div>
  <table id="table" class="table table-striped">
         <thead>
