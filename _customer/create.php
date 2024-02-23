@@ -13,6 +13,7 @@ $civil_status = ucwords($_POST['civil_status']);
 $phone_number = $_POST['phone_number'];
 $category = ucwords($_POST['category']);
 $water_reading = ucwords($_POST['water_reading']);
+$latest_reading_date = $_POST['latest_reading_date'];
 
 // check if resident is already exist
 $squery =  mysqli_query($conn, "SELECT * from customer Where first_name = '$first_name' AND middle_name = '$middle_name' AND last_name = '$last_name' AND suffix = '$suffix'");
@@ -31,7 +32,8 @@ if (empty($check)){
     `civil_status`,
     `phone_number`,
     `category`,
-    `water_reading`
+    `water_reading`,
+    `latest_reading_date`
     ) VALUES (
         '$first_name',
         '$middle_name',
@@ -44,7 +46,8 @@ if (empty($check)){
         '$civil_status',
         '$phone_number',
         '$category',
-        '$water_reading'
+        '$water_reading',
+        '$latest_reading_date'
         )";
     
     mysqli_query($conn, $sql2);

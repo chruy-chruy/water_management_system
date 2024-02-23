@@ -8,24 +8,24 @@ include_once "../sidebar.php";
 include_once "../db_conn.php";
 $user = $_SESSION['username']." ". $_SESSION['role'];
 $id = $_GET['id'];
-$squery =  mysqli_query($conn, "SELECT * from customer where id = $id  AND del_status != 'deleted'");
+$squery =  mysqli_query($conn, "SELECT * from billing where id = $id");
 while ($row = mysqli_fetch_array($squery)) {
  ?>
  <div class="header">
 <h1>Add <?php if ($page) {echo $page;} ?></h1>
 </div>
 <div class="content">
-<form class="row g-3" method="POST" action="create.php?user=<?php echo $user; ?>">
+<form class="row g-3" method="POST" action="update.php?user=<?php echo $user; ?>&id=<?php echo $id; ?>">
   <h1>Billing Information</h1>
 
   <div class="col-md-4">
     <label for="exampleDataList" class="form-label">Customer</label>
-    <input required readonly class="form-control" id="exampleDataList" name="customer" value="<?php echo $row['first_name'] ." ". $row['middle_name'] ." ". $row['last_name'] ." ". $row['suffix'] ?>">
+    <input required readonly class="form-control" id="exampleDataList" name="customer" value="<?php echo $row['customer_name']?>">
   </div>
 
   <div class="col-md-4">
     <label for="rate" class="form-label">Customer ID</label>
-    <input required readonly type="text" class="form-control" name="customer_id"  value="<?php echo $row['id'] ?>" >
+    <input required readonly type="text" class="form-control" name="customer_id"  value="<?php echo $row['customer_id'] ?>" >
   </div>
 
   <div class="col-md-4">
@@ -35,27 +35,23 @@ while ($row = mysqli_fetch_array($squery)) {
   
   <div class="col-md-4">
     <label for="rate" class="form-label">Previous Reading</label>
-    <input required readonly type="text" class="form-control" name="previous_reading" id="previous_reading" value="<?php echo $row['water_reading'] ?>" >
+    <input required readonly type="text" class="form-control" name="previous_reading" id="previous_reading" value="<?php echo $row['previous_reading'] ?>" >
   </div>
 
   <div class="col-md-4">
     <label for="rate" class="form-label">Rate</label>
-    <?php
-      $category = $row['category'];
-      $squery2 =  mysqli_query($conn, "SELECT * from category where category_name = '$category'");
-      $row2 = mysqli_fetch_array($squery2) 
-    ?>
-    <input required readonly type="text" class="form-control" name="rate" id="rate" value="<?php echo $row2['rate'] ?>" >
+
+    <input required readonly type="text" class="form-control" name="rate" id="rate" value="<?php echo $row['rate'] ?>" >
   </div>
   
   <div class="col-md-4">
     <label for="latest_reading_date" class="form-label">Date of Last Reading</label>
-    <input readonly required type="date" class="form-control" name="latest_reading_date" id="latest_reading_date" value="<?php echo $row['latest_reading_date']  ?>">
+    <input readonly required type="date" class="form-control" name="latest_reading_date" id="latest_reading_date" value="<?php echo $row['previous_reading_date']  ?>">
   </div>
 
   <div class="col-md-4">
     <label for="rate" class="form-label">Current Reading</label>
-    <input required  type="number" step=0.0001 class="form-control" name="current_reading" id="current_reading" oninput="calculate()" placeholder="00.00"  >
+    <input required  type="number" step=0.0001 class="form-control" name="current_reading" id="current_reading" oninput="calculate()" placeholder="00.00" value="<?php echo $row['current_reading']  ?>" >
     <span class="error-msg" style="color:red;"></span>
   </div>
 
@@ -63,36 +59,36 @@ while ($row = mysqli_fetch_array($squery)) {
     <label for="rate" class="form-label">Total Reading</label>
     <input required  type="number" step=0.0001  class="form-control" name="total_reading" id="total_reading" >
   </div> -->
-  <input required hidden type="number" step=0.0001  class="form-control" name="total_reading" id="total_reading" >
+  <input required hidden type="number" step=0.0001  class="form-control" name="total_reading" id="total_reading" value="<?php echo $row['total_reading']  ?>" >
 
   <div class="col-md-4">
     <label for="rate" class="form-label">Total Bill</label>
-    <input required readonly type="number" step=0.01  class="form-control" name="total_price" id="total_price" placeholder="00.00" >
+    <input required readonly type="number" step=0.01  class="form-control" name="total_price" id="total_price" placeholder="00.00" value="<?php echo $row['total']  ?>">
   </div>
 
   <div class="col-md-4">
     <label for="latest_reading_date" class="form-label">Date of Current Reading</label>
-    <input required type="date" class="form-control" name="current_reading_date" id="current_reading_date">
+    <input required type="date" class="form-control" name="current_reading_date" id="current_reading_date" value="<?php echo $row['reading_date']?>">
   </div>
 
   <div class="col-md-4">
     <label for="due_date" class="form-label">Due Date</label>
-    <input required type="date" class="form-control" name="due_date" id="due_date">
+    <input required type="date" class="form-control" name="due_date" id="due_date" value="<?php echo $row['due_date']?>">
   </div>
 
   <div class="col-md-4">
     <label for="status" class="form-label">Status</label>
     <select required id="inputState" class="form-select" name="status">
-      <option value="" select hidden>Choose...</option>
+      <option value="<?php echo $row['status']?>" select hidden><?php echo $row['status']?></option>
       <option value="Pending">Pending</option>
-      <option value="Pending">Paid</option>
+      <option value="Paid">Paid</option>
     </select>
   </div>
 
   
   <div class="col-12 buttons">
     <button class="btn btn-primary">Save</button>
-    <button type="button" onclick="history.back()" class="btn btn-secondary">Back</button>
+    <a href="./" class="btn btn-secondary">Back</a>
   </div>
   <?php }?>
 </form>

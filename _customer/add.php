@@ -94,6 +94,11 @@ include_once "../db_conn.php";
   </div>
 
   <div class="col-md-3">
+    <label for="latest_reading_date" class="form-label">Date of First Reading</label>
+    <input required type="date" class="form-control" name="latest_reading_date" id="latest_reading_date" value="<?php echo date('Y-m-d'); ?>">
+  </div>
+
+  <div class="col-md-3">
     <label for="water_reading" class="form-label">First Water Reading</label>
     <input required type="text" class="form-control" name="water_reading" id="water_reading">
   </div>

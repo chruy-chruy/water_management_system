@@ -19,7 +19,7 @@ include_once "../db_conn.php";
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Customer ID</th>
+                <th>Customer</th>
                 <th>Total</th>
                 <th>Status</th>
                 <th>Due Date</th>
@@ -33,11 +33,22 @@ include_once "../db_conn.php";
         ?>
             <tr>
             <td><?php echo $row['id'] ?></td>
-            <td><?php echo $row['customer_id'] ?></td>
+            <td ><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
             <td><?php echo $row['total'] ?></td>
-            <td><?php echo $row['status'] ?></td>
+            <td style="color:<?php 
+            if($row['status'] == 'Paid'){
+                echo 'green';
+            }else if($row['status'] == 'Pending'){
+                echo 'red';
+            }
+            ?>;
+            font-weight:bold;
+            ">
+            <?php echo $row['status'] ?>
+        </td>
             <td><?php echo $row['due_date'] ?></td>
-            <td><a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-info">Edit</a></td>
+            <td><a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-info">Edit</a>
+            <a href="print_billing.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-success">Print</a></td>
             </tr> <?php }?>
             </tbody>
     </table>

@@ -13,6 +13,7 @@ $civil_status = ucwords($_POST['civil_status']);
 $phone_number = $_POST['phone_number'];
 $category = ucwords($_POST['category']);
 $water_reading = ucwords($_POST['water_reading']);
+$latest_reading_date = $_POST['latest_reading_date'];
 $id = $_GET['id'];
 
 $sql ="UPDATE `customer` SET 
@@ -27,7 +28,8 @@ $sql ="UPDATE `customer` SET
 `civil_status`='$civil_status',
 `phone_number`='$phone_number',
 `category`='$category',
-`water_reading`='$water_reading'
+`water_reading`='$water_reading',
+`latest_reading_date`='$latest_reading_date'
 WHERE id = '$id'";
 mysqli_query($conn, $sql);
 

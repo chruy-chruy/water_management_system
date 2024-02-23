@@ -97,6 +97,11 @@ $squery =  mysqli_query($conn, "SELECT * from customer where id = $id");
   </div>
 
   <div class="col-md-3">
+    <label for="latest_reading_date" class="form-label">Date of Latest Reading</label>
+    <input required type="date" class="form-control" name="latest_reading_date" id="latest_reading_date" value="<?php echo $row['latest_reading_date']; ?>">
+  </div>
+
+  <div class="col-md-3">
     <label for="water_reading" class="form-label">Current Water Reading</label>
     <input required type="text" class="form-control" name="water_reading" id="water_reading" value="<?php echo $row['water_reading'] ?>">
   </div>
