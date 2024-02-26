@@ -85,7 +85,7 @@ while ($row = mysqli_fetch_array($squery)) {
     <select required id="inputState" class="form-select" name="status">
       <option value="" select hidden>Choose...</option>
       <option value="Pending">Pending</option>
-      <option value="Pending">Paid</option>
+      <option value="Paid">Paid</option>
     </select>
   </div>
 
