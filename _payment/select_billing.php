@@ -1,5 +1,5 @@
 <?php 
-$page = 'Billing';
+$page = 'Payment';
 if(isset($_GET['message'])){
     $message = $_GET['message'];
     echo "<script type='text/javascript'>alert('$message');</script>";
@@ -9,13 +9,12 @@ include_once "../db_conn.php";
  ?>
 <div class="header">
 <!-- <img src="../assets/img/logo.png" alt="" class="logo"> -->
-<h1 class="title-page"><?php if ($page) {echo $page;} ?></h1>
+<h1 class="title-page"><?php if ($page) {echo "Select Billing";} ?></h1>
 </div>
 <div class="content">
-<div class="add">
-    <a href="select_customer.php"><button type="button" class="btn btn-primary">Add Billing</button></a>
-</div>
- <table id="table" class="table table-striped">
+<a href="./" class="btn btn-secondary">Back</a>
+
+<table id="table" class="table table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -47,8 +46,7 @@ include_once "../db_conn.php";
             <?php echo $row['status'] ?>
         </td>
             <td><?php echo $row['due_date'] ?></td>
-            <td><a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-info">Edit</a>
-            <a href="print_billing.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-success">Print</a></td>
+            <td><a href="add.php?id=<?php echo $row['id'] ?>"  class="btn btn-primary">Select</a></td>
             </tr> <?php }?>
             </tbody>
     </table>

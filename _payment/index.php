@@ -1,5 +1,5 @@
 <?php 
-$page = 'Billing';
+$page = 'Payment';
 if(isset($_GET['message'])){
     $message = $_GET['message'];
     echo "<script type='text/javascript'>alert('$message');</script>";
@@ -13,7 +13,7 @@ include_once "../db_conn.php";
 </div>
 <div class="content">
 <div class="add">
-    <a href="select_customer.php"><button type="button" class="btn btn-primary">Add Billing</button></a>
+    <a href="select_billing.php"><button type="button" class="btn btn-primary">Add Payment</button></a>
 </div>
  <table id="table" class="table table-striped">
         <thead>
@@ -22,33 +22,24 @@ include_once "../db_conn.php";
                 <th>Customer</th>
                 <th>Total</th>
                 <th>Status</th>
-                <th>Due Date</th>
+                <th>Date</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
         <?php
-        $squery =  mysqli_query($conn, "SELECT * from billing WHERE status = 'Pending'");
+        $squery =  mysqli_query($conn, "SELECT * from payment");
          while ($row = mysqli_fetch_array($squery)) {
         ?>
             <tr>
             <td><?php echo $row['id'] ?></td>
             <td ><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
-            <td><?php echo $row['total'] ?></td>
-            <td style="color:<?php 
-            if($row['status'] == 'Paid'){
-                echo 'green';
-            }else if($row['status'] == 'Pending'){
-                echo 'red';
-            }
-            ?>;
-            font-weight:bold;
-            ">
-            <?php echo $row['status'] ?>
-        </td>
-            <td><?php echo $row['due_date'] ?></td>
-            <td><a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-info">Edit</a>
-            <a href="print_billing.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-success">Print</a></td>
+            <td><?php echo $row['amount'] ?></td>
+            <td class="text-success fw-bold">
+            Paid
+            </td>
+            <td><?php echo $row['date_created'] ?></td>
+            <td><a href="print_billing.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-success">Print</a></td>
             </tr> <?php }?>
             </tbody>
     </table>

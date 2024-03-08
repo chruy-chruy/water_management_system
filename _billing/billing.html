@@ -1,27 +1,3 @@
-<?php 
-$page = 'Billing';
-if(isset($_GET['message'])){
-    $message = $_GET['message'];
-    echo "<script type='text/javascript'>alert('$message');</script>";
-  }
-include_once "../db_conn.php";
-// $user = $_SESSION['username']." ". $_SESSION['role'];
-$id = $_GET['id'];
-$squery =  mysqli_query($conn, "SELECT * from billing where id = $id");
-while ($row = mysqli_fetch_array($squery)) {
-    $customer_id = $row["customer_id"];
-    $squery2 =  mysqli_query($conn, "SELECT * from customer where id = $customer_id");
-    $customer = mysqli_fetch_array($squery2)
- ?>
-
-<script>
-window.onload = function() {
-    window.print();
-}
-window.onafterprint = function() {
-    window.location.href = 'index.php';
-}
-</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,6 +25,9 @@ window.onafterprint = function() {
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"> -->
     <link rel="stylesheet" href="../assets//css/dataTables.bootstrap5.min.css">
 
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
 
     <style>
         body {
@@ -247,9 +226,9 @@ window.onafterprint = function() {
             }
 
             body {
+                margin-top: 20px;
                 color: #2e323c;
                 background: #ffffff;
-                height: auto;
             }
 
             * {
@@ -280,19 +259,19 @@ window.onafterprint = function() {
                                 <!-- Row end -->
                                 <!-- Row start -->
                                 <div class="row gutters">
-                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                                    <div class="col-8">
                                         <div class="invoice-details">
                                             <address>
-                                                Account Name: <span class="info"><?php echo $row["customer_name"] ?></span><br>
-                                                Address: <span class="info"><?php echo $customer["purok"] ?></span>
+                                                Account Name: <span class="info">Alex Maxwell</span><br>
+                                                Address: <span class="info">150-600 Church Street, Florida, USA</span>
                                             </address>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                    <div class="col-4">
                                         <div class="invoice-details">
                                             <address>
-                                                Billing Number: <span class="info"><?php echo $row["id"] ?></span><br>
-                                                Date:<span class="info"><?php echo $row["reading_date"] ?></span>
+                                                Billing Number: <span class="info">12312</span><br>
+                                                Date:<span class="info">12321</span>
                                             </address>
                                         </div>
                                     </div>
@@ -308,39 +287,38 @@ window.onafterprint = function() {
                                                 <tbody>
                                                     <tr>
                                                         <th colspan="2" style="text-align: center;"> Period from:
-                                                        <?php echo $row["previous_reading_date"] ?>
-                                                            to 
-                                                        <?php echo $row["reading_date"] ?></th>
+                                                            02-02-2024
+                                                            to 03-02-2024</th>
                                                     </tr>
                                                     <tr>
 
                                                         <td>Previous Reading</td>
-                                                        <td><?php echo $row["previous_reading"] ?></td>
+                                                        <td>100</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Present Reading</td>
-                                                        <td><?php echo $row["current_reading"] ?></td>
+                                                        <td>49</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Total Consumption</td>
-                                                        <td><?php echo $row["total_reading"] ?></td>
+                                                        <td>49</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Water Rate</td>
-                                                        <td><?php echo $row["rate"] ?></td>
+                                                        <td>4</td>
                                                     </tr>
                                                     <tr>
                                                         <td>
                                                             <h5><strong>Grand Total</strong></h5>
                                                         </td>
                                                         <td>
-                                                            <h5><strong>₱<?php echo $row["total"] ?></strong></h5>
+                                                            <h5><strong>$5150.99</strong></h5>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h5><strong>Due Date: <?php echo $row["due_date"] ?></strong></h5>
-                                                            <h5><strong class="text-danger">Disconnection Date:  <?php echo date('Y-m-d', strtotime($row["due_date"] . ' +10 days')) ?>
+                                                            <h5><strong>Due Date: 02-03-2024</strong></h5>
+                                                            <h5><strong>Disconnection Date: 03-03-2024
                                                                 </strong></h5>
                                                         </td>
                                                         <td>
@@ -375,118 +353,120 @@ window.onafterprint = function() {
             </div>
         </div>
     </div>
-<br>
+    <br>
+
     <div class="hide-copy">
         <div class="broken-line"></div>
         <br>
         <div class="container">
-        <div class="row gutters">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="invoice-container">
-                            <div class="invoice-header">
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="invoice-container">
+                                <div class="invoice-header">
 
-                                <!-- Row start -->
-                                <div class="row gutters">
-                                    <div class="col-lg-12">
-                                        <address class="text-middle" style="text-align: center;">
-                                            Water Billing Management System<br>
-                                            Malandag Malungon, Sarangani Province<br>
-                                        </address>
-                                    </div>
-                                </div>
-                                <!-- Row end -->
-                                <!-- Row start -->
-                                <div class="row gutters">
-                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
-                                        <div class="invoice-details">
-                                            <address>
-                                                Account Name: <span class="info"><?php echo $row["customer_name"] ?></span><br>
-                                                Address: <span class="info"><?php echo $customer["purok"] ?></span>
+                                    <!-- Row start -->
+                                    <div class="row gutters">
+                                        <div class="col-lg-12">
+                                            <address class="text-middle" style="text-align: center;">
+                                                Water Billing Management System<br>
+                                                Malandag Malungon, Sarangani Province<br>
                                             </address>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <div class="invoice-details">
-                                            <address>
-                                                Billing Number: <span class="info"><?php echo $row["id"] ?></span><br>
-                                                Date:<span class="info"><?php echo $row["reading_date"] ?></span>
-                                            </address>
+                                    <!-- Row end -->
+                                    <!-- Row start -->
+                                    <div class="row gutters">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                                            <div class="invoice-details">
+                                                <address>
+                                                    Account Name: <span class="info">Alex Maxwell</span><br>
+                                                    Address: <span class="info">150-600 Church Street, Florida,
+                                                        USA</span>
+                                                </address>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                            <div class="invoice-details">
+                                                <address>
+                                                    Billing Number: <span class="info">12312</span><br>
+                                                    Date:<span class="info">12321</span>
+                                                </address>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- Row end -->
                                 </div>
-                                <!-- Row end -->
-                            </div>
-                            <div class="invoice-body">
-                                <!-- Row start -->
-                                <div class="row gutters">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="table-responsive">
-                                            <table class="table custom-table m-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <th colspan="2" style="text-align: center;"> Period from:
-                                                        <?php echo $row["previous_reading_date"] ?>
-                                                            to 
-                                                        <?php echo $row["reading_date"] ?></th>
-                                                    </tr>
-                                                    <tr>
+                                <div class="invoice-body">
+                                    <!-- Row start -->
+                                    <div class="row gutters">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="table-responsive">
+                                                <table class="table custom-table m-0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th colspan="2" style="text-align: center;"> Period from:
+                                                                02-02-2024
+                                                                to 03-02-2024</th>
+                                                        </tr>
+                                                        <tr>
 
-                                                        <td>Previous Reading</td>
-                                                        <td><?php echo $row["previous_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Present Reading</td>
-                                                        <td><?php echo $row["current_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Total Consumption</td>
-                                                        <td><?php echo $row["total_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Water Rate</td>
-                                                        <td><?php echo $row["rate"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h5><strong>Grand Total</strong></h5>
-                                                        </td>
-                                                        <td>
-                                                            <h5><strong>₱<?php echo $row["total"] ?></strong></h5>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h5><strong>Due Date: <?php echo $row["due_date"] ?></strong></h5>
-                                                            <h5><strong class="text-danger">Disconnection Date:  <?php echo date('Y-m-d', strtotime($row["due_date"] . ' +10 days')) ?>
-                                                                </strong></h5>
-                                                        </td>
-                                                        <td>
-                                                            <p style="text-align: center;">
-                                                                <strong>Importante napahibalo</strong>
-                                                                <br>
-                                                                Kini nga balayran hangtod
-                                                                <br>
-                                                                napulo lang ka adlaw sugod sa
-                                                                <br>
-                                                                pagdawat sa waterbill. <br>
-                                                                Kun dili makabayad posible
-                                                                <br>
-                                                                nga maputulan ug serbisyo.
-                                                            </p>
-                                                        </td>
+                                                            <td>Previous Reading</td>
+                                                            <td>100</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Present Reading</td>
+                                                            <td>49</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Consumption</td>
+                                                            <td>49</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Water Rate</td>
+                                                            <td>4</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h5><strong>Grand Total</strong></h5>
+                                                            </td>
+                                                            <td>
+                                                                <h5><strong>$5150.99</strong></h5>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h5><strong>Due Date: 02-03-2024</strong></h5>
+                                                                <h5><strong>Disconnection Date: 03-03-2024
+                                                                    </strong></h5>
+                                                            </td>
+                                                            <td>
+                                                                <p style="text-align: center;">
+                                                                    <strong>Importante napahibalo</strong>
+                                                                    <br>
+                                                                    Kini nga balayran hangtod
+                                                                    <br>
+                                                                    napulo lang ka adlaw sugod sa
+                                                                    <br>
+                                                                    pagdawat sa waterbill. <br>
+                                                                    Kun dili makabayad posible
+                                                                    <br>
+                                                                    nga maputulan ug serbisyo.
+                                                                </p>
+                                                            </td>
 
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- Row end -->
                                 </div>
-                                <!-- Row end -->
-                            </div>
-                            <div class="invoice-footer">
-                                <!-- Daghang Salamat -->
+                                <div class="invoice-footer">
+                                    <!-- Daghang Salamat -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -494,8 +474,6 @@ window.onafterprint = function() {
             </div>
         </div>
     </div>
-    </div>
 </body>
 
 </html>
-<?php }?>

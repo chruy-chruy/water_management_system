@@ -15,7 +15,7 @@ while ($row = mysqli_fetch_array($squery)) {
 <h1>Add <?php if ($page) {echo $page;} ?></h1>
 </div>
 <div class="content">
-<form class="row g-3" method="POST" action="update.php?user=<?php echo $user; ?>&id=<?php echo $id; ?>">
+<form class="row g-3" method="POST" action="create.php?user=<?php echo $user; ?>&id=<?php echo $id; ?>">
   <h1>Billing Information</h1>
 
   <div class="col-md-4">
@@ -51,7 +51,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
   <div class="col-md-4">
     <label for="rate" class="form-label">Current Reading</label>
-    <input required  type="number" step=0.0001 class="form-control" name="current_reading" id="current_reading" oninput="calculate()" placeholder="00.00" value="<?php echo $row['current_reading']  ?>" >
+    <input required readonly type="number" step=0.0001 class="form-control" name="current_reading" id="current_reading" oninput="calculate()" placeholder="00.00" value="<?php echo $row['current_reading']  ?>" >
     <span class="error-msg" style="color:red;"></span>
   </div>
 
@@ -68,22 +68,22 @@ while ($row = mysqli_fetch_array($squery)) {
 
   <div class="col-md-4">
     <label for="latest_reading_date" class="form-label">Date of Current Reading</label>
-    <input required type="date" class="form-control" name="current_reading_date" id="current_reading_date" value="<?php echo $row['reading_date']?>">
+    <input required readonly type="date" class="form-control" name="current_reading_date" id="current_reading_date" value="<?php echo $row['reading_date']?>">
   </div>
 
   <div class="col-md-4">
     <label for="due_date" class="form-label">Due Date</label>
-    <input required type="date" class="form-control" name="due_date" id="due_date" value="<?php echo $row['due_date']?>">
+    <input required readonly type="date" class="form-control" name="due_date" id="due_date" value="<?php echo $row['due_date']?>">
   </div>
 
-  <!-- <div class="col-md-4">
+  <div class="col-md-4">
     <label for="status" class="form-label">Status</label>
     <select required id="inputState" class="form-select" name="status">
       <option value="<?php echo $row['status']?>" select hidden><?php echo $row['status']?></option>
       <option value="Pending">Pending</option>
       <option value="Paid">Paid</option>
     </select>
-  </div> -->
+  </div>
 
   
   <div class="col-12 buttons">
