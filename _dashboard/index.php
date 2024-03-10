@@ -62,8 +62,9 @@ $pending = mysqli_fetch_array($squery4);
         </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-12 col-xl-12 mb-4 mb-lg-0">
+
+<div class="row my-3">
+  <div class="col-6 col-xl-6 mb-12 mb-lg-0">
       <div class="card">
           <h5 class="card-header">Latest Billing Transactions</h5>
           <div class="card-body">
@@ -104,8 +105,45 @@ $pending = mysqli_fetch_array($squery4);
     </table>
       </div>
   </div>
-
 </div>
+</div>
+
+
+  <div class="col-6 col-xl-6 mb-12 mb-lg-0">
+      <div class="card">
+          <h5 class="card-header">Latest Payment Transactions</h5>
+          <div class="card-body">
+              <div class="table-responsive">
+              <table class="table">
+              <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        $squery =  mysqli_query($conn, "SELECT * from payment");
+         while ($row = mysqli_fetch_array($squery)) {
+        ?>
+            <tr>
+            <td><?php echo $row['id'] ?></td>
+            <td ><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
+            <td><?php echo $row['amount'] ?></td>
+            <td><?php echo $row['date_created'] ?></td>
+            </tr> <?php }?>
+            </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
 
 </div>
  </body>

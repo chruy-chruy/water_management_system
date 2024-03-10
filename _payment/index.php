@@ -21,7 +21,6 @@ include_once "../db_conn.php";
                 <th>ID</th>
                 <th>Customer</th>
                 <th>Total</th>
-                <th>Status</th>
                 <th>Date</th>
                 <th>Action</th>
             </tr>
@@ -35,9 +34,6 @@ include_once "../db_conn.php";
             <td><?php echo $row['id'] ?></td>
             <td ><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
             <td><?php echo $row['amount'] ?></td>
-            <td class="text-success fw-bold">
-            Paid
-            </td>
             <td><?php echo $row['date_created'] ?></td>
             <td><a href="print_billing.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-success">Print</a></td>
             </tr> <?php }?>

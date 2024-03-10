@@ -82,11 +82,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
   <div class="col-md-4">
     <label for="status" class="form-label">Status</label>
-    <select required id="inputState" class="form-select" name="status">
-      <option value="" select hidden>Choose...</option>
-      <option value="Pending">Pending</option>
-      <option value="Paid">Paid</option>
-    </select>
+    <input readonly required type="text" class="form-control" name="status" id="status" value="Pending">
   </div>
 
   

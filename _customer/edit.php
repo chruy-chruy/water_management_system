@@ -56,8 +56,36 @@ $squery =  mysqli_query($conn, "SELECT * from customer where id = $id");
     <label for="purok" class="form-label">Purok</label>
     <select required class="form-select" name="purok" id="purok">
       <option value="<?php echo $row['purok'] ?>" select hidden><?php echo $row['purok'] ?></option>
-      <option value="test">test</option>
-      <option value="test">test</option>
+      <option value="Purok Sambag">Purok Sambag</option>
+      <option value="Purok Talisay">Purok Talisay</option>
+      <option value="Purok Mabuhay">Purok Mabuhay</option>
+      <option value="Purok Macao">Purok Macao</option>
+      <option value="Purok Sangguyan">Purok Sangguyan</option>
+      <option value="Purok Tagaytay">Purok Tagaytay</option>
+      <option value="Purok Saligan">Purok Saligan</option>
+      <option value="Purok Tapcan">Purok Tapcan</option>
+      <option value="Sitio Pananim">Sitio Pananim</option>
+      <option value="Sitio Ambang">Sitio Ambang</option>
+      <option value="Sitio Malinis">Sitio Malinis</option>
+      <option value="Sitio Balitangan">Sitio Balitangan</option>
+      <option value="Sitio Lamlinol">Sitio Lamlinol</option>
+      <option value="Purok Abcalag">Purok Abcalag</option>
+      <option value="Sitio Kablala">Sitio Kablala</option>
+      <option value="Purok Sufa Mlanub">Purok Sufa Mlanub</option>
+      <option value="Sitio Lamlangil">Sitio Lamlangil</option>
+      <option value="Sitio Kalbangan">Sitio Kalbangan</option>
+      <option value="Sitio Nian">Sitio Nian</option>
+      <option value="Purok Lumagok">Purok Lumagok</option>
+      <option value="Sitio Kadengen">Sitio Kadengen</option>
+      <option value="Purok Tinago">Purok Tinago</option>
+      <option value="Purok Binenli">Purok Binenli</option>
+      <option value="Sitio Pikong">Sitio Pikong</option>
+      <option value="Purok Mahayag">Purok Mahayag</option>
+      <option value="Purok Mati">Purok Mati</option>
+      <option value="Sitio Kanyugan">Sitio Kanyugan</option>
+      <option value="Purok Kidalgan">Purok Kidalgan</option>
+      <option value="Purok Kiturok">Purok Kiturok</option>
+      <option value="Sitio Lambugad">Sitio Lambugad</option>
     </select>
   </div>
 

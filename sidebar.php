@@ -44,7 +44,9 @@ if (!isset($_SESSION['id'])) {
   <a class="<?php if ($page == 'Category') {echo 'active';} ?>" href="../_category"><i class="fas fa-bars"></i>Category</a>
   <a class="<?php if ($page == 'Billing') {echo 'active';} ?>" href="../_billing"><i class="fas fa-wallet"></i>Billing</a>
   <a class="<?php if ($page == 'Payment') {echo 'active';} ?>" href="../_payment"><i class="fas fa-wallet"></i>Payment</a>
+  <?php if($_SESSION['role'] == 'administrator'){?>
   <a class="<?php if ($page == 'User') {echo 'active';} ?>" href="../_user"><i class="fas fa-users"></i>User</a>
+  <?php  }  ?>
   <a class="<?php if ($page == 'Logout') {echo 'active';} ?>" href="../logout.php"><i class="fas fa-solid fa-arrow-right"></i>Logout</a>
 </div>
 

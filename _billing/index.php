@@ -28,7 +28,7 @@ include_once "../db_conn.php";
         </thead>
         <tbody>
         <?php
-        $squery =  mysqli_query($conn, "SELECT * from billing WHERE status = 'Pending'");
+        $squery =  mysqli_query($conn, "SELECT * from billing");
          while ($row = mysqli_fetch_array($squery)) {
         ?>
             <tr>
@@ -47,8 +47,13 @@ include_once "../db_conn.php";
             <?php echo $row['status'] ?>
         </td>
             <td><?php echo $row['due_date'] ?></td>
-            <td><a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-info">Edit</a>
-            <a href="print_billing.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-success">Print</a></td>
+         
+            <td>
+            <?php if($row['status'] == 'Pending') {?>
+                <a href="edit.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-info">Edit</a>
+            <?php }?>
+            <a href="print_billing.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-success">Print</a>
+        </td>
             </tr> <?php }?>
             </tbody>
     </table>

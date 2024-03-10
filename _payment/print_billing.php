@@ -1,5 +1,5 @@
 <?php 
-$page = 'Billing';
+$page = 'Payment';
 if(isset($_GET['message'])){
     $message = $_GET['message'];
     echo "<script type='text/javascript'>alert('$message');</script>";
@@ -7,7 +7,7 @@ if(isset($_GET['message'])){
 include_once "../db_conn.php";
 // $user = $_SESSION['username']." ". $_SESSION['role'];
 $id = $_GET['id'];
-$squery =  mysqli_query($conn, "SELECT * from billing where id = $id");
+$squery =  mysqli_query($conn, "SELECT * from payment where id = $id");
 while ($row = mysqli_fetch_array($squery)) {
     $customer_id = $row["customer_id"];
     $squery2 =  mysqli_query($conn, "SELECT * from customer where id = $customer_id");
@@ -49,6 +49,9 @@ window.onafterprint = function() {
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"> -->
     <link rel="stylesheet" href="../assets//css/dataTables.bootstrap5.min.css">
 
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/sidebar.css">
 
     <style>
         body {
@@ -235,7 +238,7 @@ window.onafterprint = function() {
                     margin: 1rem 0 0 0;
                     padding: 1rem;
                     line-height: 180%;
-                    background: #ffd478ce;
+                    background: #d16e94ea;
                 }
             }
 
@@ -247,9 +250,9 @@ window.onafterprint = function() {
             }
 
             body {
+                margin-top: 20px;
                 color: #2e323c;
                 background: #ffffff;
-                height: auto;
             }
 
             * {
@@ -261,6 +264,8 @@ window.onafterprint = function() {
 
 <body>
     <div class="container">
+        <br>
+        <br><br>
         <div class="row gutters">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="card">
@@ -283,7 +288,7 @@ window.onafterprint = function() {
                                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
                                         <div class="invoice-details">
                                             <address>
-                                                Account Name: <span class="info"><?php echo $row["customer_name"] ?></span><br>
+                                                Account Name: <span class="info">  <?php echo $row["customer_name"] ?></span><br>
                                                 Address: <span class="info"><?php echo $customer["purok"] ?></span>
                                             </address>
                                         </div>
@@ -291,8 +296,8 @@ window.onafterprint = function() {
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                                         <div class="invoice-details">
                                             <address>
-                                                Billing Number: <span class="info"><?php echo $row["id"] ?></span><br>
-                                                Date: <span class="info"><?php echo $row["reading_date"] ?></span>
+                                                Receipt Number: <span class="info"><?php echo $row["id"] ?></span><br>
+                                                Date: <span class="info"><?php echo $row["date_created"] ?></span>
                                             </address>
                                         </div>
                                     </div>
@@ -307,54 +312,27 @@ window.onafterprint = function() {
                                             <table class="table custom-table m-0">
                                                 <tbody>
                                                     <tr>
-                                                        <th colspan="2" style="text-align: center;"> Period from:
-                                                        <?php echo $row["previous_reading_date"] ?>
-                                                            to 
-                                                        <?php echo $row["reading_date"] ?></th>
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>Previous Reading</td>
-                                                        <td><?php echo $row["previous_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Present Reading</td>
-                                                        <td><?php echo $row["current_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Total Consumption</td>
-                                                        <td><?php echo $row["total_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Water Rate</td>
-                                                        <td><?php echo $row["rate"] ?></td>
+                                                        <th colspan="2" class="h2" style="text-align: center;"> PAYMENT RECEIPT </th>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h5><strong>Grand Total</strong></h5>
+                                                            <h5><strong>Total Amount</strong></h5>
                                                         </td>
                                                         <td>
-                                                            <h5><strong>₱<?php echo $row["total"] ?></strong></h5>
+                                                            <h5><strong>₱<?php echo $row["amount"] ?></strong></h5>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h5><strong>Due Date: <?php echo $row["due_date"] ?></strong></h5>
-                                                            <h5><strong class="text-danger">Disconnection Date:  <?php echo date('Y-m-d', strtotime($row["due_date"] . ' +10 days')) ?>
-                                                                </strong></h5>
+                                                            
                                                         </td>
                                                         <td>
+                                                            <br><br><br>
                                                             <p style="text-align: center;">
-                                                                <strong>Importante napahibalo</strong>
-                                                                <br>
-                                                                Kini nga balayran hangtod
-                                                                <br>
-                                                                napulo lang ka adlaw sugod sa
-                                                                <br>
-                                                                pagdawat sa waterbill. <br>
-                                                                Kun dili makabayad posible
-                                                                <br>
-                                                                nga maputulan ug serbisyo.
+                                                               by:____________________________
+                                                               <br>
+                                                               Cashier / Authorized Representative
+                                                               <br>
                                                             </p>
                                                         </td>
 
@@ -375,7 +353,8 @@ window.onafterprint = function() {
             </div>
         </div>
     </div>
-<br>
+    <br>
+
     <div class="hide-copy">
         <div class="broken-line"></div>
         <br>
@@ -402,7 +381,7 @@ window.onafterprint = function() {
                                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
                                         <div class="invoice-details">
                                             <address>
-                                                Account Name: <span class="info"><?php echo $row["customer_name"] ?></span><br>
+                                                Account Name: <span class="info">  <?php echo $row["customer_name"] ?></span><br>
                                                 Address: <span class="info"><?php echo $customer["purok"] ?></span>
                                             </address>
                                         </div>
@@ -410,8 +389,8 @@ window.onafterprint = function() {
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                                         <div class="invoice-details">
                                             <address>
-                                                Billing Number: <span class="info"><?php echo $row["id"] ?></span><br>
-                                                Date: <span class="info"><?php echo $row["reading_date"] ?></span>
+                                                Receipt Number: <span class="info"><?php echo $row["id"] ?></span><br>
+                                                Date: <span class="info"><?php echo $row["date_created"] ?></span>
                                             </address>
                                         </div>
                                     </div>
@@ -426,54 +405,27 @@ window.onafterprint = function() {
                                             <table class="table custom-table m-0">
                                                 <tbody>
                                                     <tr>
-                                                        <th colspan="2" style="text-align: center;"> Period from:
-                                                        <?php echo $row["previous_reading_date"] ?>
-                                                            to 
-                                                        <?php echo $row["reading_date"] ?></th>
-                                                    </tr>
-                                                    <tr>
-
-                                                        <td>Previous Reading</td>
-                                                        <td><?php echo $row["previous_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Present Reading</td>
-                                                        <td><?php echo $row["current_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Total Consumption</td>
-                                                        <td><?php echo $row["total_reading"] ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Water Rate</td>
-                                                        <td><?php echo $row["rate"] ?></td>
+                                                        <th colspan="2" class="h2" style="text-align: center;"> PAYMENT RECEIPT </th>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h5><strong>Grand Total</strong></h5>
+                                                            <h5><strong>Total Amount</strong></h5>
                                                         </td>
                                                         <td>
-                                                            <h5><strong>₱<?php echo $row["total"] ?></strong></h5>
+                                                            <h5><strong>₱<?php echo $row["amount"] ?></strong></h5>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <h5><strong>Due Date: <?php echo $row["due_date"] ?></strong></h5>
-                                                            <h5><strong class="text-danger">Disconnection Date:  <?php echo date('Y-m-d', strtotime($row["due_date"] . ' +10 days')) ?>
-                                                                </strong></h5>
+                                                            
                                                         </td>
                                                         <td>
+                                                            <br><br><br>
                                                             <p style="text-align: center;">
-                                                                <strong>Importante napahibalo</strong>
-                                                                <br>
-                                                                Kini nga balayran hangtod
-                                                                <br>
-                                                                napulo lang ka adlaw sugod sa
-                                                                <br>
-                                                                pagdawat sa waterbill. <br>
-                                                                Kun dili makabayad posible
-                                                                <br>
-                                                                nga maputulan ug serbisyo.
+                                                               by:____________________________
+                                                               <br>
+                                                               Cashier / Authorized Representative
+                                                               <br>
                                                             </p>
                                                         </td>
 
