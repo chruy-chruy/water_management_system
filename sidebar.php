@@ -38,7 +38,7 @@ if (!isset($_SESSION['id'])) {
 </head>
 <body>
 <div class="sidebar">
-<label for=""><img src="../assets/img/logo.png" alt="" class="login-logo-mini">WBMS</label>
+<label for=""><img src="../assets/img/logo.png" alt="" class="login-logo-mini">Barangay Tamban Malungon Sarangani Province</label>
   <a class="<?php if ($page == 'Dashboard') {echo 'active';} ?>" href="../_dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a>
   <a class="<?php if ($page == 'Customer') {echo 'active';} ?>" href="../_customer"><i class="fas fa-id-card-alt"></i>Customer</a>
   <a class="<?php if ($page == 'Category') {echo 'active';} ?>" href="../_category"><i class="fas fa-bars"></i>Category</a>

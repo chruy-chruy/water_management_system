@@ -7,7 +7,7 @@ if(isset($_GET['message'])){
 include_once "../sidebar.php";
 include_once "../db_conn.php";
 
-$squery1 =  mysqli_query($conn, "SELECT COUNT(id) as 'count' FROM customer;");
+$squery1 =  mysqli_query($conn, "SELECT COUNT(id) as 'count' FROM customer where del_status != 'deleted';");
 $customer = mysqli_fetch_array($squery1);
 
 $squery2 =  mysqli_query($conn, "SELECT COUNT(id) as 'count' FROM billing;");

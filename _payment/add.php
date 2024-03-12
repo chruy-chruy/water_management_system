@@ -79,8 +79,7 @@ while ($row = mysqli_fetch_array($squery)) {
   <div class="col-md-4">
     <label for="status" class="form-label">Status</label>
     <select required id="inputState" class="form-select" name="status">
-      <option value="<?php echo $row['status']?>" select hidden><?php echo $row['status']?></option>
-      <option value="Pending">Pending</option>
+      <option value="" select hidden><?php echo $row['status']?></option>
       <option value="Paid">Paid</option>
     </select>
   </div>
