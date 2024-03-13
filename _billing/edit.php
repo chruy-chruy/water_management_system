@@ -76,14 +76,10 @@ while ($row = mysqli_fetch_array($squery)) {
     <input required type="date" class="form-control" name="due_date" id="due_date" value="<?php echo $row['due_date']?>">
   </div>
 
-  <!-- <div class="col-md-4">
-    <label for="status" class="form-label">Status</label>
-    <select required id="inputState" class="form-select" name="status">
-      <option value="<?php echo $row['status']?>" select hidden><?php echo $row['status']?></option>
-      <option value="Pending">Pending</option>
-      <option value="Paid">Paid</option>
-    </select>
-  </div> -->
+  <div class="col-md-4">
+    <label for="status" class="form-label">Due Date</label>
+    <input readonly required type="text" class="form-control" name="status" id="status" value="<?php echo $row['status']?>">
+  </div>
 
   
   <div class="col-12 buttons">
@@ -119,6 +115,9 @@ while ($row = mysqli_fetch_array($squery)) {
               document.getElementById("total_reading").value = total_reading;
               document.getElementById("total_price").value = total_price.toFixed(2);
                document.querySelector(".error-msg").innerHTML="";
+      }
+      else if (current_reading < previous_reading) {
+        document.querySelector(".error-msg").innerHTML="Quantity must be greater than Previous Reading.";
       }
     }
     // );

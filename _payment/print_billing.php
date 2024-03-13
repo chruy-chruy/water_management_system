@@ -28,7 +28,7 @@ window.onafterprint = function() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Print Payment</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="../includes/fontawesome-free-5.15.4-web/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -278,7 +278,7 @@ window.onafterprint = function() {
                                     <div class="col-lg-12">
                                         <address class="text-middle" style="text-align: center;">
                                             Water Billing Management System<br>
-                                            Malandag Malungon, Sarangani Province<br>
+                                            Barangay Tamban Malungon Sarangani Province<br>
                                         </address>
                                     </div>
                                 </div>

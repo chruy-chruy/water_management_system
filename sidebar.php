@@ -11,7 +11,7 @@ if (!isset($_SESSION['id'])) {
 <head>
     
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="icon" type="image/x-icon" href="../assets/img/logo.ico">
+<link rel="icon" type="image/x-icon" href="../assets/img/logo.png">
     <link rel="stylesheet" href="../includes/fontawesome-free-5.15.4-web/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
@@ -42,8 +42,9 @@ if (!isset($_SESSION['id'])) {
   <a class="<?php if ($page == 'Dashboard') {echo 'active';} ?>" href="../_dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a>
   <a class="<?php if ($page == 'Customer') {echo 'active';} ?>" href="../_customer"><i class="fas fa-id-card-alt"></i>Customer</a>
   <a class="<?php if ($page == 'Category') {echo 'active';} ?>" href="../_category"><i class="fas fa-bars"></i>Category</a>
-  <a class="<?php if ($page == 'Billing') {echo 'active';} ?>" href="../_billing"><i class="fas fa-wallet"></i>Billing</a>
+  <a class="<?php if ($page == 'Billing') {echo 'active';} ?>" href="../_billing"><i class="fas fa-file-invoice"></i>Billing</a>
   <a class="<?php if ($page == 'Payment') {echo 'active';} ?>" href="../_payment"><i class="fas fa-wallet"></i>Payment</a>
+  <a class="<?php if ($page == 'Report') {echo 'active';} ?>" href="../_report"><i class="fas fa-print"></i>Report</a>
   <?php if($_SESSION['role'] == 'administrator'){?>
   <a class="<?php if ($page == 'User') {echo 'active';} ?>" href="../_user"><i class="fas fa-users"></i>User</a>
   <?php  }  ?>

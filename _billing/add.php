@@ -119,6 +119,8 @@ while ($row = mysqli_fetch_array($squery)) {
               document.getElementById("total_reading").value = total_reading;
               document.getElementById("total_price").value = total_price.toFixed(2);
                document.querySelector(".error-msg").innerHTML="";
+      }else if (current_reading < previous_reading) {
+        document.querySelector(".error-msg").innerHTML="Quantity must be greater than Previous Reading.";
       }
     }
     // );
