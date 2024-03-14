@@ -392,7 +392,7 @@ window.onafterprint = function() {
                                     <div class="col-lg-12">
                                         <address class="text-middle" style="text-align: center;">
                                             Water Billing Management System<br>
-                                            Malandag Malungon, Sarangani Province<br>
+                                            Barangay Tamban Malungon Sarangani Province<br>
                                         </address>
                                     </div>
                                 </div>
