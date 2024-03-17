@@ -57,7 +57,7 @@ if (empty($customer_status)){
     $sql2 = "UPDATE `customer` SET `latest_reading_date`='$current_reading_date', `water_reading`='$current_reading' WHERE id = '$customer_id'";
     mysqli_query($conn, $sql2);
 
-    header("location:../_billing?message=Success! new Category has been saved successfully.");
+    header("location:../_billing?message=Success! new Billing has been saved successfully.");
 }
 else{
     header("location:../_billing/select_customer.php?message=Error! Customer has PENDING billing.");

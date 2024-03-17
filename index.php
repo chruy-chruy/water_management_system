@@ -27,7 +27,8 @@
         <label for="username"> <i class="login__icon fas fa-user"></i> Username</label>
         <input type="text" placeholder="Username" id="username" name="username">
 
-        <label for="password"> <i class="login__icon fas fa-lock"></i> Password</label>
+        <label for="password"> <i class="login__icon fas fa-lock"></i> Password 
+        <button type="button" id="visibilityToggleBtn" style="float:right;cursor: pointer;background-color:Transparent;">Show</button></label>
         <input type="password" placeholder="Password" id="password" name="password">
         <?php if (isset($_GET['error'])) { ?>
                 <p class="error-message" style="margin-bottom: 15px; color :red ;"><?php echo $_GET['error']; ?></p>
@@ -36,6 +37,18 @@
             <span class="button__text">LOGIN</span>
         </button>
     </form>
+    <script>
+document.getElementById("visibilityToggleBtn").addEventListener("click", function() {
+    var passwordInput = document.getElementById("password");
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        this.textContent = "Hide";
+    } else {
+        passwordInput.type = "password";
+        this.textContent = "Show";
+    }
+});
+</script>
 </body>
 
 </html>

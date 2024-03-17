@@ -117,8 +117,8 @@ div.content {
       }
       .add{
         padding: 10px;
-        color: white;
-        margin-top: 10px;
+      }
+      .add button {
       }
       .dataTables_wrapper {
         border-collapse: collapse;

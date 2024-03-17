@@ -221,6 +221,19 @@ window.onafterprint = function() {
             /* Adjust size for the breaks */
             background-repeat: repeat-x;
         }
+        .logo1{
+            position: fixed;
+            height:40px;
+            margin-left: 140px;
+
+        }
+        .logo2{
+            position: absolute;
+            height:40px;
+            float: right;
+            margin-left: 475px;
+        }
+
 
         @media print {
 
@@ -271,19 +284,22 @@ window.onafterprint = function() {
                                 <!-- Row start -->
                                 <div class="row gutters">
                                     <div class="col-lg-12">
+                                        <img class="logo1" src="../assets/img/logo.png" alt="" srcset="">
+                                        <img class="logo2" src="../assets/img/logo2.png" alt="" srcset="">
                                         <address class="text-middle" style="text-align: center;">
                                             Water Billing Management System<br>
                                             Barangay Tamban Malungon Sarangani Province<br>
                                         </address>
                                     </div>
                                 </div>
+                                <br>
                                 <!-- Row end -->
                                 <!-- Row start -->
                                 <div class="row gutters">
                                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
                                         <div class="invoice-details">
                                             <address>
-                                                Account Name: <span class="info"><?php echo $row["customer_name"] ?></span><br>
+                                                Account Name/Number: <span class="info"><?php echo $row["customer_name"]." - ". $customer["id"] ?></span><br>
                                                 Address: <span class="info"><?php echo $customer["purok"] ?></span>
                                             </address>
                                         </div>
@@ -390,19 +406,22 @@ window.onafterprint = function() {
                                 <!-- Row start -->
                                 <div class="row gutters">
                                     <div class="col-lg-12">
+                                        <img class="logo1" src="../assets/img/logo.png" alt="" srcset="">
+                                        <img class="logo2" src="../assets/img/logo2.png" alt="" srcset="">
                                         <address class="text-middle" style="text-align: center;">
                                             Water Billing Management System<br>
                                             Barangay Tamban Malungon Sarangani Province<br>
                                         </address>
                                     </div>
                                 </div>
+                                <br>
                                 <!-- Row end -->
                                 <!-- Row start -->
                                 <div class="row gutters">
                                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
                                         <div class="invoice-details">
                                             <address>
-                                                Account Name: <span class="info"><?php echo $row["customer_name"] ?></span><br>
+                                                Account Name/Number: <span class="info"><?php echo $row["customer_name"]." - ". $customer["id"] ?></span><br>
                                                 Address: <span class="info"><?php echo $customer["purok"] ?></span>
                                             </address>
                                         </div>

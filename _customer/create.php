@@ -16,7 +16,7 @@ $water_reading = ucwords($_POST['water_reading']);
 $latest_reading_date = $_POST['latest_reading_date'];
 
 // check if resident is already exist
-$squery =  mysqli_query($conn, "SELECT * from customer Where first_name = '$first_name' AND middle_name = '$middle_name' AND last_name = '$last_name' AND suffix = '$suffix'");
+$squery =  mysqli_query($conn, "SELECT * from customer Where first_name = '$first_name' AND middle_name = '$middle_name' AND last_name = '$last_name' AND suffix = '$suffix' AND del_status != 'deleted'");
 while ($row = mysqli_fetch_array($squery)) {$check =  $row['first_name']; };
 
 if (empty($check)){
@@ -51,7 +51,7 @@ if (empty($check)){
         )";
     
     mysqli_query($conn, $sql2);
-    header("location:../_customer?message=Success! new Category has been saved successfully.");
+    header("location:../_customer?message=Success! new Customer has been saved successfully.");
 }
 else{
     header("location:../_customer?message=Error! Customer already exist.");

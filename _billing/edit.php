@@ -68,22 +68,22 @@ while ($row = mysqli_fetch_array($squery)) {
 
   <div class="col-md-4">
     <label for="latest_reading_date" class="form-label">Date of Current Reading</label>
-    <input required type="date" class="form-control" name="current_reading_date" id="current_reading_date" value="<?php echo $row['reading_date']?>">
+    <input required type="date" class="form-control" name="current_reading_date" id="current_reading_date" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $row['reading_date']?>">
   </div>
 
   <div class="col-md-4">
     <label for="due_date" class="form-label">Due Date</label>
-    <input required type="date" class="form-control" name="due_date" id="due_date" value="<?php echo $row['due_date']?>">
+    <input required type="date" class="form-control" name="due_date" id="due_date" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $row['due_date']?>">
   </div>
 
   <div class="col-md-4">
-    <label for="status" class="form-label">Due Date</label>
+    <label for="status" class="form-label">Status</label>
     <input readonly required type="text" class="form-control" name="status" id="status" value="<?php echo $row['status']?>">
   </div>
 
   
   <div class="col-12 buttons">
-    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-primary">Update</button>
     <a href="./" class="btn btn-secondary">Back</a>
   </div>
   <?php }?>

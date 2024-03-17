@@ -16,17 +16,17 @@ include_once "../db_conn.php";
   <h1>Customer Information</h1>
 
   <div class="col-md-3">
-    <label for="first_name" class="form-label">First Name</label>
+    <label for="first_name" class="form-label">First Name<span style="color: red;">*</span></label>
     <input required type="text" class="form-control" name="first_name" id="first_name">
   </div>
 
   <div class="col-md-3">
     <label for="middle_name" class="form-label">Middle Name</label>
-    <input required type="text" class="form-control" name="middle_name" id="middle_name">
+    <input type="text" class="form-control" name="middle_name" id="middle_name">
   </div>
 
   <div class="col-md-3">
-    <label for="last_name" class="form-label">Last Name</label>
+    <label for="last_name" class="form-label">Last Name<span style="color: red;">*</span></label>
     <input required type="text" class="form-control" name="last_name" id="last_name">
   </div>
 
@@ -36,7 +36,7 @@ include_once "../db_conn.php";
   </div>
 
   <div class="col-md-3">
-    <label for="gender" class="form-label">Gender</label>
+    <label for="gender" class="form-label">Gender<span style="color: red;">*</span></label>
     <select required id="inputState" class="form-select" name="gender">
       <option value="" select hidden>Choose...</option>
       <option value="Female">Female</option>
@@ -45,12 +45,12 @@ include_once "../db_conn.php";
   </div>
 
   <div class="col-md-3">
-    <label for="date_of_birth" class="form-label">Date of Birth</label>
-    <input required type="date" class="form-control" name="date_of_birth" id="date_of_birth">
+    <label for="date_of_birth" class="form-label">Date of Birth<span style="color: red;">*</span></label>
+    <input required type="date" class="form-control" name="date_of_birth" max="<?php echo date('Y-m-d'); ?>" id="date_of_birth">
   </div>
 
   <div class="col-md-3">
-    <label for="purok" class="form-label">Purok</label>
+    <label for="purok" class="form-label">Purok<span style="color: red;">*</span></label>
     <select required class="form-select" name="purok" id="purok">
       <option value="" select hidden>Choose...</option>
       <option value="Purok Sambag">Purok Sambag</option>
@@ -87,12 +87,12 @@ include_once "../db_conn.php";
   </div>
 
   <div class="col-md-3">
-    <label for="place_of_birth" class="form-label">Place of Birth</label>
+    <label for="place_of_birth" class="form-label">Place of Birth<span style="color: red;">*</span></label>
     <input required type="text" class="form-control" name="place_of_birth" id="place_of_birth">
   </div>
 
   <div class="col-md-3">
-    <label for="civil_status" class="form-label">Civil Status</label>
+    <label for="civil_status" class="form-label">Civil Status<span style="color: red;">*</span></label>
     <select required class="form-select" name="civil_status" id="civil_status">
       <option value="" select hidden>Choose...</option>
       <option value="Single">Single</option>
@@ -103,14 +103,14 @@ include_once "../db_conn.php";
   </div>
 
   <div class="col-md-3">
-    <label for="phone_number" class="form-label">Phone Number</label>
+    <label for="phone_number" class="form-label">Phone Number<span style="color: red;">*</span></label>
     <input required type="text" class="form-control" name="phone_number" id="phone_number">
   </div>
 
   <h1>Billing Information</h1>
 
   <div class="col-md-3">
-    <label for="category" class="form-label">Category</label>
+    <label for="category" class="form-label">Category<span style="color: red;">*</span></label>
     <select required class="form-select" name="category" id="category">
     <?php
       $squery =  mysqli_query($conn, "SELECT * from category");
@@ -122,12 +122,12 @@ include_once "../db_conn.php";
   </div>
 
   <div class="col-md-3">
-    <label for="latest_reading_date" class="form-label">Date of First Reading</label>
-    <input required type="date" class="form-control" name="latest_reading_date" id="latest_reading_date" value="<?php echo date('Y-m-d'); ?>">
+    <label for="latest_reading_date" class="form-label">Date of First Reading<span style="color: red;">*</span></label>
+    <input required type="date" class="form-control" name="latest_reading_date" id="latest_reading_date"  value="<?php echo date('Y-m-d'); ?>">
   </div>
 
   <div class="col-md-3">
-    <label for="water_reading" class="form-label">First Water Reading</label>
+    <label for="water_reading" class="form-label">First Water Reading<span style="color: red;">*</span></label>
     <input required type="text" class="form-control" name="water_reading" id="water_reading">
   </div>
 
