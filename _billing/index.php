@@ -20,6 +20,7 @@ include_once "../db_conn.php";
             <tr>
                 <th>ID</th>
                 <th>Customer</th>
+                <th>Purok/Sitio</th>
                 <th>Total</th>
                 <th>Status</th>
                 <th>Due Date</th>
@@ -30,10 +31,14 @@ include_once "../db_conn.php";
         <?php
         $squery =  mysqli_query($conn, "SELECT * from billing");
          while ($row = mysqli_fetch_array($squery)) {
+            $customer_id =  $row['customer_id'];
+        $squery1 =  mysqli_query($conn, "SELECT * from customer where id = '$customer_id'");
+        $customer = mysqli_fetch_array($squery1);
         ?>
             <tr>
             <td><?php echo $row['id'] ?></td>
-            <td ><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
+            <td><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
+            <td><?php echo $customer['purok'] ?></td>
             <td><?php echo $row['total'] ?></td>
             <td style="color:<?php 
             if($row['status'] == 'Paid'){

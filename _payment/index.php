@@ -20,6 +20,7 @@ include_once "../db_conn.php";
             <tr>
                 <th>ID</th>
                 <th>Customer</th>
+                <th>Purok/Sitio</th>
                 <th>Total</th>
                 <th>Date</th>
                 <th>Action</th>
@@ -29,10 +30,14 @@ include_once "../db_conn.php";
         <?php
         $squery =  mysqli_query($conn, "SELECT * from payment");
          while ($row = mysqli_fetch_array($squery)) {
+            $customer_id =  $row['customer_id'];
+        $squery1 =  mysqli_query($conn, "SELECT * from customer where id = '$customer_id'");
+        $customer = mysqli_fetch_array($squery1);
         ?>
             <tr>
             <td><?php echo $row['id'] ?></td>
             <td ><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
+            <td><?php echo $customer['purok'] ?></td>
             <td><?php echo $row['amount'] ?></td>
             <td><?php echo $row['date_created'] ?></td>
             <td><a href="print_billing.php?id=<?php echo $row['id'] ?>" class="btn btn-outline-success">Print</a></td>

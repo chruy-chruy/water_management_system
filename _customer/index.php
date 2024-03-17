@@ -20,6 +20,7 @@ include_once "../db_conn.php";
             <tr>
                 <th>ID</th>
                 <th>Customer Name</th>
+                <th>Purok/Sitio</th>
                 <th>Category</th>
                 <th>Action</th>
             </tr>
@@ -32,8 +33,9 @@ include_once "../db_conn.php";
             <tr>
             <td><?php echo $row['id'] ?></td>
             <td><?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name']." ".$row['suffix'] ?></td>
+            <td><?php echo $row['purok'] ?></td>
             <td><?php echo $row['category'] ?></td>
-            <td><a href="edit.php?id=<?php echo $row['id'] ?>"  class="btn btn-outline-info">Edit</a></td>
+            <td><a href="edit.php?id=<?php echo $row['id'] ?>"  class="btn btn-outline-info">View</a></td>
             </tr> <?php }?>
             </tbody>
     </table>
