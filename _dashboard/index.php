@@ -141,49 +141,6 @@ $pending = mysqli_fetch_array($squery4);
   </div>
 </div>
 </div>
-</div> -->
-
-<?php
-// Create an array of all months you want to display
-$all_months = [];
-for ($i = 1; $i <= 12; $i++) {
-    $all_months[] = date('Y-m', mktime(0, 0, 0, $i, 1));
-}
-
-// SQL query to get the count of rows per month
-$sql1 = "
-SELECT DATE_FORMAT(date_created, '%Y-%m') AS month,
-COUNT(*) AS row_count
-FROM billing
-GROUP BY DATE_FORMAT(date_created, '%Y-%m')
-ORDER BY month
-";
-
-$result = $conn->query($sql1);
-
-// Fetch all the rows into an associative array
-$rows = [];
-while ($row = $result->fetch_assoc()) {
-    $rows[$row['month']] = $row['row_count'];
-}
-
-// Prepare final data with counts for all months
-$data1 = [];
-foreach ($all_months as $month) {
-    $row_count = isset($rows[$month]) ? $rows[$month] : 0;
-    $data[] = ['month' => $month, 'row_count' => $row_count];
-}       ?>
- 
- 
-<div class="col-6">
-      <div class="card">
-          <h5 class="card-header">Billing Transactions</h5>
-          <div class="card-body">
-          <div>
-  <canvas id="barChart"></canvas>
-</div>
-  </div>
-</div>
 </div>
 <script src="../assets/js/chart.js"></script>
 <script>

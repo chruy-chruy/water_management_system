@@ -4,8 +4,32 @@ if(isset($_GET['message'])){
     $message = $_GET['message'];
     echo "<script type='text/javascript'>alert('$message');</script>";
   }
-  $id = $_GET['id'];
   include_once "../db_conn.php";
+
+      $status = $_GET['status'];
+      $month = $_GET['month'];
+  
+  $query = "SELECT * from billing";
+  if($status != 'All'){
+      $query .= " where status = '$status'";
+  }
+  if($month != 'All'){
+    if($status != 'All'){
+        $date = strtotime($month . ' 1');
+        // Use date function to get the month number
+        $monthNumber = date('m', $date);
+        $query .= " and month(due_date) = '$monthNumber'";
+    }else{
+        $date = strtotime($month . ' 1');
+        // Use date function to get the month number
+        $monthNumber = date('m', $date);
+        $query .= " where month(due_date) = '$monthNumber'";
+    }
+}
+  $query = mysqli_query($conn, $query);
+
+
+
  ?>
  
  <script>
@@ -42,42 +66,69 @@ window.onafterprint = function() {
     <link rel="stylesheet" href="../assets//css/dataTables.bootstrap5.min.css">
 
  </head>
+ <style>
+
+      .logo1{
+            height:70px;
+        }
+        .logo2{
+            height:70px;
+        }
+
+ </style>
  <body>
  
- <div class="container mt-3">
- <h1 style="text-align:center;">Report</h1>
-    <?php 
-     $squery1 =  mysqli_query($conn, "SELECT * from payment where customer_id = '$id'");
-     $row1 = mysqli_fetch_array($squery1);
-     if(empty( $row1['customer_name']))
-     {
-         ?>
-         <br>
-         <h2>NO DATA</h2>
-         <?php }
-    else{?>
+ <div class="container mt-5 position-relative">
+        <div class="logos d-flex position-absolute justify-content-center w-100 pe-4 align-items-center gap-5">
+        <img class="logo1" src="../assets/img/logo.png" alt="" srcset="">
+        <address class="text-middle fw-bold fs-5" style="text-align: center;">
+            Water Billing Management System<br>
+            Barangay Tamban Malungon Sarangani Province<br>
+        </address>
+        <img class="logo2" src="../assets/img/logo2.png" alt="" srcset="">
+        </div>
+   
 <br>
-   <h2><?php echo $row1['customer_name'];?></h2>           
-   <table class="table table-striped">
-   <thead>
+<br>
+   <table id="table" class="table table-striped mt-5">
+        <thead>
             <tr>
+                <th>ID</th>
                 <th>Customer</th>
-                <th>Total</th>
-                <th>Date</th>
+                <th>Purok/Sitio</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Due Date</th>
             </tr>
         </thead>
         <tbody>
         <?php
-        $squery =  mysqli_query($conn, "SELECT * from payment where customer_id = '$id'");
-         while ($row = mysqli_fetch_array($squery)) {
+    //    $squery =  mysqli_query($conn, "SELECT * from billing");
+       while ($row = mysqli_fetch_array($query)) {
+          $customer_id =  $row['customer_id'];
+      $squery1 =  mysqli_query($conn, "SELECT * from customer where id = '$customer_id'");
+      $customer = mysqli_fetch_array($squery1);
         ?>
             <tr>
-            <td ><?php echo $row['customer_name']  ?></td>
-            <td><?php echo $row['amount'] ?></td>
-            <td><?php echo $row['date_created'] ?></td>
-            </tr> <?php }}?>
+            <td><?php echo $row['id'] ?></td>
+            <td><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
+            <td><?php echo $customer['purok'] ?></td>
+            <td><?php echo $row['total'] ?></td>
+            <td style="color:<?php 
+            if($row['status'] == 'Paid'){
+                echo 'green';
+            }else if($row['status'] == 'Pending'){
+                echo 'red';
+            }
+            ?>;
+            font-weight:bold;
+            ">
+            <?php echo $row['status'] ?>
+        </td>
+            <td><?php echo $row['due_date'] ?></td>
+            </tr> <?php }?>
             </tbody>
-   </table>
+    </table>
  </div>
  
  </body>
