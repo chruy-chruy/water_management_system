@@ -107,7 +107,7 @@ $squery =  mysqli_query($conn, "SELECT * from customer where id = $id");
 
   <div class="col-md-3">
     <label for="phone_number" class="form-label">Phone Number<span style="color: red;">*</span></label>
-    <input required type="text" class="form-control" name="phone_number" id="phone_number" value="<?php echo $row['phone_number'] ?>">
+    <input required type="number" class="form-control" name="phone_number" id="phone_number" max-limit="11" value="<?php echo $row['phone_number'] ?>">
   </div>
 
   <h1>Billing Information</h1>

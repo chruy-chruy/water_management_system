@@ -104,7 +104,7 @@ include_once "../db_conn.php";
 
   <div class="col-md-3">
     <label for="phone_number" class="form-label">Phone Number<span style="color: red;">*</span></label>
-    <input required type="text" class="form-control" name="phone_number" id="phone_number">
+    <input required type="number" maxlength="11" placeholder="09123456789" class="form-control" name="phone_number" id="phone_number">
   </div>
 
   <h1>Billing Information</h1>

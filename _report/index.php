@@ -100,7 +100,7 @@ include_once "../db_conn.php";
       $customer = mysqli_fetch_array($squery1);
         ?>
             <tr>
-            <td><?php echo $row['id'] ?></td>
+            <td>24-<?php echo $row['id'] ?></td>
             <td><?php echo $row['customer_id'] ." - ". $row['customer_name']  ?></td>
             <td><?php echo $customer['purok'] ?></td>
             <td><?php echo $row['total'] ?></td>

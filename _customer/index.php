@@ -31,7 +31,7 @@ include_once "../db_conn.php";
          while ($row = mysqli_fetch_array($squery)) {
         ?>
             <tr>
-            <td><?php echo $row['id'] ?></td>
+            <td>24-<?php echo $row['id'] ?></td>
             <td><?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name']." ".$row['suffix'] ?></td>
             <td><?php echo $row['purok'] ?></td>
             <td><?php echo $row['category'] ?></td>
