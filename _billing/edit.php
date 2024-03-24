@@ -12,7 +12,7 @@ $squery =  mysqli_query($conn, "SELECT * from billing where id = $id");
 while ($row = mysqli_fetch_array($squery)) {
  ?>
  <div class="header">
-<h1>Add <?php if ($page) {echo $page;} ?></h1>
+<h1>Edit <?php if ($page) {echo $page;} ?></h1>
 </div>
 <div class="content">
 <form class="row g-3" method="POST" action="update.php?user=<?php echo $user; ?>&id=<?php echo $id; ?>">
@@ -68,7 +68,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
   <div class="col-md-4">
     <label for="latest_reading_date" class="form-label">Date of Current Reading</label>
-    <input required type="date" class="form-control" name="current_reading_date" id="current_reading_date" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $row['reading_date']?>">
+    <input readonly required type="date" class="form-control" name="current_reading_date" id="current_reading_date" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $row['reading_date']?>">
   </div>
 
   <div class="col-md-4">

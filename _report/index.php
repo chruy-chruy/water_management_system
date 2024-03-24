@@ -8,27 +8,19 @@ if(isset($_GET['message'])){
 include_once "../db_conn.php";
  
     $status = 'All';
-    $month = 'All';
-    if(isset($_POST['status']) && isset($_POST['month'])){
+
+    if(isset($_POST['status']) && isset($_POST['from']) && isset($_POST['to'])){
         $status = $_POST['status'];
-        $month = $_POST['month'];
+        $from = $_POST['from'];
+        $to = $_POST['to'];
     }
-    $query = "SELECT * from billing";
+    $query = "SELECT * from billing WHERE 1";
+
     if($status != 'All'){
-        $query .= " where status = '$status'";
+        $query .= " and status = '$status'";
     }
-    if($month != 'All'){
-        if($status != 'All'){
-            $date = strtotime($month . ' 1');
-            // Use date function to get the month number
-            $monthNumber = date('m', $date);
-            $query .= " and month(due_date) = '$monthNumber'";
-        }else{
-            $date = strtotime($month . ' 1');
-            // Use date function to get the month number
-            $monthNumber = date('m', $date);
-            $query .= " where month(due_date) = '$monthNumber'";
-        }
+    if(!empty($from) && !empty($to)){
+        $query .= " AND due_date BETWEEN '$from' AND '$to'";
     }
     $query = mysqli_query($conn, $query);
 
@@ -41,6 +33,7 @@ include_once "../db_conn.php";
 <div class="content">
 <div class="add">
 <form class="row" method="POST" action="index.php">
+
     <div class="col-2">
         <label for="statusSelect">Status</label>
         <select class="form-select" id="statusSelect" name="status">
@@ -50,7 +43,8 @@ include_once "../db_conn.php";
             <option value="Paid">Paid</option>
         </select>
     </div>
-    <div class="col-2">
+    
+    <!-- <div class="col-2">
         <label for="monthSelect">Month</label>
         <select class="form-select" id="monthSelect" name="month">
             <option selected hidden value="<?php echo $month ?>" selected><?php echo $month ?></option>
@@ -68,7 +62,18 @@ include_once "../db_conn.php";
             <option value="November">November</option>
             <option value="December">December</option>
         </select>
+    </div> -->
+
+    <div class="col-2">
+        <label for="monthSelect">From</label>
+        <input required type="date" class="form-control" name="from" value="<?php echo $from ?>">
     </div>
+
+    <div class="col-2">
+        <label for="monthSelect">To</label>
+        <input required type="date" class="form-control" name="to" value="<?php echo $to ?>">
+    </div>
+
     <div class="col-1">
         <label for="filterButton"> </label>
         <button type="submit" class="form-control btn btn-danger" id="filterButton">Filter</button>
@@ -77,7 +82,7 @@ include_once "../db_conn.php";
 </form>
 
 <label for="autoSizingInput"> </label>
-        <a href="print.php?status=<?php echo $status ?>&month=<?php echo $month ?>"><button type="button" class="form-control btn btn-success">Print</button></a>
+        <a href="print.php?status=<?php echo $status ?>&from=<?php echo $from ?>&to=<?php echo $to ?>"><button type="button" class="form-control btn btn-success">Print</button></a>
     </div>
 </div>
  <table id="table" class="table table-striped">

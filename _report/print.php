@@ -6,28 +6,24 @@ if(isset($_GET['message'])){
   }
   include_once "../db_conn.php";
 
-      $status = $_GET['status'];
-      $month = $_GET['month'];
-  
-  $query = "SELECT * from billing";
-  if($status != 'All'){
-      $query .= " where status = '$status'";
-  }
-  if($month != 'All'){
-    if($status != 'All'){
-        $date = strtotime($month . ' 1');
-        // Use date function to get the month number
-        $monthNumber = date('m', $date);
-        $query .= " and month(due_date) = '$monthNumber'";
-    }else{
-        $date = strtotime($month . ' 1');
-        // Use date function to get the month number
-        $monthNumber = date('m', $date);
-        $query .= " where month(due_date) = '$monthNumber'";
-    }
-}
-  $query = mysqli_query($conn, $query);
 
+  if(isset($_GET['status']) && isset($_GET['from']) && isset($_GET['to'])){
+      $status = $_GET['status'];
+      $from = $_GET['from'];
+      $to = $_GET['to'];
+  }
+  $query = "SELECT * from billing WHERE 1";
+  
+
+  if($status != 'All'){
+      $query .= " and status = '$status'";
+  }else{
+    $status = 'Paid and Pending';
+  }
+  if(!empty($from) && !empty($to)){
+      $query .= " AND due_date BETWEEN '$from' AND '$to'";
+  }
+  $query = mysqli_query($conn, $query);
 
 
  ?>
@@ -85,9 +81,7 @@ window.onafterprint = function() {
             Water Billing Management System<br>
             Barangay Tamban Malungon Sarangani Province
             <br>
-            Status: <?php echo $status ?>
             <br>
-            Month: <?php echo $month ?>
         </address>
         <img class="logo2" src="../assets/img/logo2.png" alt="" srcset="">
         </div>
@@ -95,7 +89,13 @@ window.onafterprint = function() {
 <br>
 <br>
 <br>
-   <table id="table" class="table table-striped mt-5">
+<br>
+From: <?php echo date("F d Y", strtotime($from)) ?> 
+<br>
+To: <?php echo date("F d Y", strtotime($to)) ?>
+<br>
+Status: <?php echo $status ?>
+   <table id="table" class="table table-striped mt-2">
         <thead>
             <tr>
                 <th>ID</th>
