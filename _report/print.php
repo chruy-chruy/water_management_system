@@ -83,11 +83,16 @@ window.onafterprint = function() {
         <img class="logo1" src="../assets/img/logo.png" alt="" srcset="">
         <address class="text-middle fw-bold fs-5" style="text-align: center;">
             Water Billing Management System<br>
-            Barangay Tamban Malungon Sarangani Province<br>
+            Barangay Tamban Malungon Sarangani Province
+            <br>
+            Status: <?php echo $status ?>
+            <br>
+            Month: <?php echo $month ?>
         </address>
         <img class="logo2" src="../assets/img/logo2.png" alt="" srcset="">
         </div>
-   
+<br>
+<br>
 <br>
 <br>
    <table id="table" class="table table-striped mt-5">

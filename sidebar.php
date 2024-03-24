@@ -46,8 +46,8 @@ if (!isset($_SESSION['id'])) {
   <?php  }  ?>
   <a class="<?php if ($page == 'Billing') {echo 'active';} ?>" href="../_billing"><i class="fas fa-file-invoice"></i>Billing</a>
   <a class="<?php if ($page == 'Payment') {echo 'active';} ?>" href="../_payment"><i class="fas fa-wallet"></i>Payment</a>
-  <a class="<?php if ($page == 'Report') {echo 'active';} ?>" href="../_report?status=All&month=All"><i class="fas fa-print"></i>Report</a>
   <?php if($_SESSION['role'] == 'administrator'){?>
+  <a class="<?php if ($page == 'Report') {echo 'active';} ?>" href="../_report?status=All&month=All"><i class="fas fa-print"></i>Report</a>
   <a class="<?php if ($page == 'User') {echo 'active';} ?>" href="../_user"><i class="fas fa-users"></i>User</a>
   <?php  }  ?>
   <a class="<?php if ($page == 'Logout') {echo 'active';} ?>" href="../logout.php"><i class="fas fa-solid fa-arrow-right"></i>Logout</a>
